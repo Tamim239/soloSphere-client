@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { UseAuth } from "../Hook/UseAuth";
+import logo from '../assets/images/logo.png';
 
 export const Navbar = () => {
   const { user, logOut } = UseAuth();
@@ -8,7 +9,7 @@ export const Navbar = () => {
     <div className="navbar bg-base-100 shadow-sm container px-4 mx-auto">
       <div className="flex-1">
         <div className="flex gap-2 items-center">
-          <img className="w-auto h-7" src="" alt="" />
+          <img className="w-auto h-7" src={logo} alt="" />
           <span className="font-bold">SoloSphere</span>
         </div>
       </div>

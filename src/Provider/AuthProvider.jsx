@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -79,3 +80,7 @@ useEffect(()=>{
 }
 
 export default AuthProvider
+
+AuthProvider.propTypes ={
+  children: PropTypes.node
+}

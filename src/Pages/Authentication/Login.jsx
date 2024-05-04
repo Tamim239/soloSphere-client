@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import logo1 from "../../assets/images/login.jpg";
 import { UseAuth } from "../../Hook/UseAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { signIn } = UseAuth();
@@ -16,6 +17,7 @@ const Login = () => {
     signIn(email, password)
       .then((res) => {
         console.log(res.user);
+        toast.success("successfully signed in")
         navigate("/");
       })
       .catch((err) => {
