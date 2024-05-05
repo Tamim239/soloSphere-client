@@ -24,6 +24,5 @@ export const Slider = ({image, text}) => {
 }
 
 Slider.propTypes = {
-    image: PropTypes.image,
     text: PropTypes.string
 }
