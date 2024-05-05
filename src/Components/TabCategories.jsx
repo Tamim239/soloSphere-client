@@ -1,8 +1,20 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { JobCard } from "./JobCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const TabCategories = () => {
+  const [jobData, setJobData] = useState([])
+    
+  useEffect(()=>{
+       axios.get('http://localhost:5000/jobs')
+       .then(data =>{
+        console.log(data.data)
+        setJobData(data?.data)
+       })
+  },[])
+
   return (
     <div className="container py-10 px-6 mx-auto">
          <h1 className='text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl '>
@@ -23,15 +35,31 @@ export const TabCategories = () => {
           </TabList>
         </div>
         <TabPanel>
-          <h2>
-            <JobCard></JobCard>
+          <h2 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {
+              jobData.filter(j=> j.category === 'Web Development').map(job => <JobCard key={job?._id}
+              job={job}
+              ></JobCard>)
+            }
           </h2>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 2</h2>
+        <h2 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {
+              jobData.filter(j=> j.category === 'Web Design').map(job => <JobCard key={job?._id}
+              job={job}
+              ></JobCard>)
+            }
+          </h2>
         </TabPanel>
         <TabPanel>
-          <h2>Any content 2</h2>
+        <h2 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {
+              jobData.filter(j=> j.category === 'Digital Marketing').map(job => <JobCard key={job?._id}
+              job={job}
+              ></JobCard>)
+            }
+          </h2>
         </TabPanel>
       </Tabs>
     </div>
